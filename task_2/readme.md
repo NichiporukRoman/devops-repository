@@ -18,19 +18,30 @@ useradd user2
 
 ```
 sudo passwd user2 ***
-sudo passwd -f-u user1 
+sudo passwd -f -u user1 
+nano .ssh/authorized_keys <- for both
 ```
 ```
 sudo nano /etc/ssh/sshd_config
 ```
 Then set:
-- PermitRootLogin -> prohibit-password
-- PasswordAuthentification -> yes
-- PermitEmptyPassword -> yes
+- for all:
+    - PermitRootLogin -> no
+    - PasswordAuthentification -> no
+    - PermitEmptyPassword -> no
+    - PubkeyAuthentification-> yes
+- for user2:
+    - Match User user2
+    -   PermitRootLogin without-password
+    -   PasswordAuthentication yes
+    -   PermitEmptyPasswords yes
+
 
 4. user1 должен иметь доступ к sudo, а user2 - нет:
 ```
+cat /etc/group
 sudo usermod -aG wheel user1
+sudo gpasswd -d user2 wheel
 ```
 5.  Под пользователем user1 создать документ. Используя права доступа сделать так - чтоб пользователь user2 не смог прочитать содержимое документа:
 ``` 

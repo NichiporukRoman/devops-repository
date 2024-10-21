@@ -19,6 +19,8 @@
 ## jobs
 ### First job
 ### Third job
+
+ufa
 - 
 ```
 ping google.com
@@ -67,11 +69,11 @@ curl ifconfig.me
 ```
 - local IP:
 ```
-ipconfig
+ifconfig
 ip addr show
 ```
 - hostname:
-```
+``` 
 hostname
 ```
 - 

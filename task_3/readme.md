@@ -22,3 +22,26 @@
 |MX-запись|задает адрес почтового сервера|
 |NS-запись|определяют DNS-серверы, которые отвечают за данную зону|
 3. 
+
+SSL:
+```
+sudo yum install -y certbot python3-certbot-nginx
+sudo yum install certbot python3-certbot-apache
+sudo certbot --nginx -d n8ire.servehttp.com
+sudo certbot certonly --apache -d n8ire.servehttp.com
+```
+
+ В /etc/httpd/conf/httpd.conf ставим:
+ ```
+ Listen 81
+ ```
+
+ В /etc/httpd/conf.d/ssl.conf ставим:
+ ```
+Listen 81
+ ```
+
+ Удалить:
+```
+ sudo certbot delete --cert-name n8ire.servehttp.com
+```

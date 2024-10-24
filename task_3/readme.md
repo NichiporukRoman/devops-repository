@@ -10,7 +10,7 @@
     3. Получить информацию о PHP сервере (гиперссылка) - переход на apache с возвратом инфы о PHP (host/info.php) 
     4. Получить респонс с другого сервера (гиперссылка) - сайт который отдается не proxy, а другим сервером (host/secondserver)
 
-## jobs
+## Jobs
 1. ez
 2. Ниже приведена таблица:
 
@@ -38,7 +38,7 @@ sudo certbot certonly --apache -d n8ire.servehttp.com
 
  В /etc/httpd/conf.d/ssl.conf ставим:
  ```
-Listen 81
+Listen 82
  ```
 
  Удалить:

@@ -1,0 +1,14 @@
+[Unit]
+Description=task 5 completed
+After=network.target
+
+[Service]
+ExecStart=/home/roman/site/logger.sh
+Restart=always
+RestartSec=5
+StandardOutput=null
+StandardError=null
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

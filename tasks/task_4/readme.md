@@ -8,8 +8,8 @@
 
 ## Jobs
 1. upstream -> Load balancer via Round Robin 
-2. location proxypass на изображения чтобы красиво было (не надо так)
-3. Вот location с регулярным выражением:
+3. location proxypass на изображения чтобы красиво было (не надо так)
+4. Вот location с регулярным выражением:
 ```
 location /img/ {
     location ~* \.jpg$ {
@@ -18,5 +18,25 @@ location /img/ {
     }
 }
 ```
-    - ~*: указывает на то, что сопоставление будет регистронезависимым
-    - $: Это символ, который обозначает конец строки
+- ~*: указывает на то, что сопоставление будет регистронезависимым
+- $: Это символ, который обозначает конец строки
+### Install Nginx with Image Filter Support
+download Nginx source code:
+```
+wget http://nginx.org/download/nginx-1.20.1.tar.gz
+tar -zxvf nginx-1.20.1.tar.gz
+cd nginx-1.20.1
+```
+configure Nginx with the image filter module:
+```
+./configure --with-http_image_filter_module --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module 
+```
+build and install Nginx:
+```
+make
+sudo make install
+```
+start nginx:
+```
+sudo /usr/local/nginx/sbin/nginx
+```

@@ -1,0 +1,1 @@
+ssh -i ssh -i $1 ubuntu@$2 'sudo apt update'

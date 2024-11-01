@@ -1,0 +1,10 @@
+[Interface]
+PrivateKey = sD/xWbyFqtB2twD07aRJO8BwlzGiVkWPj3AynY2DQHA=
+Address = 10.0.11.2/32,fd42:42:42::2/128
+DNS = 1.1.1.1,1.0.0.1
+
+[Peer]
+PublicKey = QXtC+QSp+7jiTcHGD3WdM+5JdR67zEBIFyEj8k7xci0=
+PresharedKey = Omv4yqR/5+0zHxUHbx7rpNdsijzbTyiBT24q2joOAxs=
+Endpoint = 52.90.149.29:56286
+AllowedIPs = 0.0.0.0/0,::/0

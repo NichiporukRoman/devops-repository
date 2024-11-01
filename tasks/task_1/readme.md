@@ -45,7 +45,7 @@ traceroute to google.com (142.250.203.142), 64 hops max
 ```
 - 
 ```
-roman@roman-ASUS:~$ sudo netstat -ltupan | grep 80
+roman@roman-ASUS:~$   
 tcp        0      0 0.0.0.0:8081            0.0.0.0:*               LISTEN      54714/docker-proxy  
 tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      2608/nginx: master  
 tcp        0      0 192.168.100.205:38396   149.154.167.222:80      TIME_WAIT   -                   

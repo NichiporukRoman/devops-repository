@@ -21,12 +21,4 @@ nano load.sh
 cpu_load=$(top -bn1 | grep "Cpu(s)")
 echo "$cpu_load"
 ```
-
-```
-sudo yum install -y gcc spawn-fcgi
-sudo wget http://http.debian.net/debian/pool/main/f/fcgiwrap/fcgiwrap_1.1.0.orig.tar.gz
-tar -xzf fcgiwrap_1.1.0.orig.tar.gz
-cd fcgiwrap-1.1.0
-make
-sudo make install
-```
+2. 

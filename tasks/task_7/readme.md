@@ -12,9 +12,13 @@
 ## Jobs
 1. В AWS RDS заходим в istance и создаем новый instance с типом postgres.
 2. 
-    1. Через pgAdmin:
+Через pgAdmin:
+![1](https://github.com/user-attachments/assets/98fc2324-a5ba-437d-bd22-9417084f5b65)
+![2](https://github.com/user-attachments/assets/8b460c3f-61a7-42fd-a53c-2bf2080cebe0)
+![3](https://github.com/user-attachments/assets/d8ad7028-a822-47ee-a4c8-fecec3e8b567)
+    
 
-    2. Через терминал:
+Через терминал:
 ```
 psql -h db-roman.c5iifcvfgobh.us-east-1.rds.amazonaws.com -U postgres -d postgres -p 5433
 Password for user postgres: 
@@ -36,14 +40,25 @@ jundb=> CREATE TABLE credit_cards_numbers (
 );
 ```
 5. 
-    1. 
-    2. Удаление таблицы
+Создание snapshot:
+
+![5](https://github.com/user-attachments/assets/c4bb9811-8e3a-42a9-8346-b6b1a9b0c476)
+
+Удаление таблицы:
+    
 ```
 DROP DATABASE jundb;
-``` 
+```
+
+Востановление snapshot:
+![6](https://github.com/user-attachments/assets/b0207937-ba92-4921-ab89-a7f6cad90149)
+
 6.  Проверка того что все что мы сделали сохранилось:
-    1. Через pgAdmin:
-    2. Через терминал:
+Через pgAdmin:
+![8](https://github.com/user-attachments/assets/fe939fb3-334b-4707-be08-f0c3b471b89f)
+![9](https://github.com/user-attachments/assets/7ea8617b-3c9f-4399-b391-103398cd877b)
+
+Через терминал:
 ```
 roman@roman-ASUS:~$ psql -h db-roman.c5iifcvfgobh.us-east-1.rds.amazonaws.com -U postgres -d postgres -p 5432
 Password for user postgres: 
@@ -57,11 +72,18 @@ SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: 
 You are now connected to database "jundb" as user "postgres".
 ```
 7. Настройка:
+![10](https://github.com/user-attachments/assets/81f89386-ee3e-4dd3-b2d0-2f0396cf68af)
+![11](https://github.com/user-attachments/assets/ea6f9b90-9361-42ae-b06a-3546d2fa3e96)
+8. Удаление и востановление
+![12](https://github.com/user-attachments/assets/1861a3d7-76eb-42c0-a58b-9adf7c62a640)
+![13](https://github.com/user-attachments/assets/4df77ed7-122e-4a12-bd84-ede68b8091d9)
 
-8. Удаление и востановление 
 9. Проверка того что все что мы сделали сохранилось:
-    1. Через pgAdmin:
-    2. Через терминал:
+Через pgAdmin:
+![15](https://github.com/user-attachments/assets/e44c64cc-21ef-4840-af16-fb03aa15a9f5)
+![16](https://github.com/user-attachments/assets/76e7ad79-726d-44a4-b710-152940fe1c0b)
+
+Через терминал:
 ```
 roman@roman-ASUS:~$ psql -h db-roman.c5iifcvfgobh.us-east-1.rds.amazonaws.com -U postgres -d postgres -p 5432
 Password for user postgres: 

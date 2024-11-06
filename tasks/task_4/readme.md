@@ -10,7 +10,7 @@
 1. upstream -> Load balancer via Round Robin 
 3. location proxypass на изображения чтобы красиво было (не надо так)
 4. Вот location с регулярным выражением:
-```
+```bash
 location /img/ {
     location ~* \.jpg$ {
         image_filter rotate 180;
@@ -22,21 +22,21 @@ location /img/ {
 - $: Это символ, который обозначает конец строки
 ### Install Nginx with Image Filter Support
 download Nginx source code:
-```
+```bash
 wget http://nginx.org/download/nginx-1.20.1.tar.gz
 tar -zxvf nginx-1.20.1.tar.gz
 cd nginx-1.20.1
 ```
 configure Nginx with the image filter module:
-```
+```bash
 ./configure --with-http_image_filter_module --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module 
 ```
 build and install Nginx:
-```
+```bash
 make
 sudo make install
 ```
 start nginx:
-```
+```bash
 sudo /usr/local/nginx/sbin/nginx
 ```

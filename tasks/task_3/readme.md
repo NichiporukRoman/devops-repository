@@ -24,7 +24,7 @@
 3. 
 
 SSL:
-```
+```bash
 sudo yum install -y certbot python3-certbot-nginx
 sudo yum install certbot python3-certbot-apache
 sudo certbot --nginx -d n8ire.servehttp.com
@@ -42,6 +42,6 @@ Listen 82
  ```
 
  Удалить:
-```
+```bash
  sudo certbot delete --cert-name n8ire.servehttp.com
 ```

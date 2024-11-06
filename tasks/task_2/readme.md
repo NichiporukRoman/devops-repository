@@ -16,12 +16,12 @@ sudo useradd user2
 ```
 3. user1 должен заходить каждый раз только по ssh ключу на инстанс, а user2 должен каждый раз вводить свой пароль при попытке зайти на инстанс.
 
-```
+```bash
 sudo passwd user2 ***
 sudo passwd -f -u user1 
 nano .ssh/authorized_keys <- for both
 ```
-```
+```bash
 sudo nano /etc/ssh/sshd_config
 ```
 Then set:
@@ -38,21 +38,21 @@ Then set:
 
 
 4. user1 должен иметь доступ к sudo, а user2 - нет:
-```
+```bash
 cat /etc/group
 sudo usermod -aG wheel user1
 sudo gpasswd -d user2 wheel
 ```
 5.  Под пользователем user1 создать документ. Используя права доступа сделать так - чтоб пользователь user2 не смог прочитать содержимое документа:
-``` 
+```bash
 nano secret.txt
 chmod 700 secret.txt
 ```
 6. Создать нового пользователя user3, настроить для него интерпритатор по умолчанию sh
-```
+```bash
 sudo usermod --shell /bin/sh user3
 ```
 or
-```
+```bash
 nano /etc/passwd -> change mannualy 
 ```

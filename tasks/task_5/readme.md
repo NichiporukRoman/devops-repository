@@ -12,11 +12,11 @@
 6. Логи NGNIX можно сохранять любые до каких получится дотянуться. Для парсинга логов использовать sed и awk
 ## Jobs
 1. Напишем load.sh:
-```
+```bash
 nano load.sh
 ```
 
-```
+```bash
 #!/bin/bash
 cpu_load=$(top -bn1 | grep "Cpu(s)")
 echo "$cpu_load"

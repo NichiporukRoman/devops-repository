@@ -19,22 +19,21 @@
     
 
 Через терминал:
-```
+```bash
 psql -h db-roman.c5iifcvfgobh.us-east-1.rds.amazonaws.com -U postgres -d postgres -p 5433
 Password for user postgres: 
 ```
 3. Создание новой базы данных:
-```
-postgres=> CREATE DATABASE jundb;
-ERROR:  database "jundb" already exists
+```bash
+CREATE DATABASE jundb;
 postgres=> \c jundb
 psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2), server 16.3)
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, compression: off)
 You are now connected to database "jundb" as user "postgres".
 ```
 4. Создание новой таблицы:
-```
-jundb=> CREATE TABLE credit_cards_numbers (
+```sql
+CREATE TABLE credit_cards_numbers (
     id SERIAL PRIMARY KEY,
     card_number VARCHAR(16) NOT NULL
 );
@@ -46,7 +45,7 @@ jundb=> CREATE TABLE credit_cards_numbers (
 
 Удаление таблицы:
     
-```
+```sql
 DROP DATABASE jundb;
 ```
 
@@ -59,7 +58,7 @@ DROP DATABASE jundb;
 ![9](https://github.com/user-attachments/assets/7ea8617b-3c9f-4399-b391-103398cd877b)
 
 Через терминал:
-```
+```bash
 roman@roman-ASUS:~$ psql -h db-roman.c5iifcvfgobh.us-east-1.rds.amazonaws.com -U postgres -d postgres -p 5432
 Password for user postgres: 
 psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2), server 16.3)
@@ -84,7 +83,7 @@ You are now connected to database "jundb" as user "postgres".
 ![16](https://github.com/user-attachments/assets/76e7ad79-726d-44a4-b710-152940fe1c0b)
 
 Через терминал:
-```
+```bash
 roman@roman-ASUS:~$ psql -h db-roman.c5iifcvfgobh.us-east-1.rds.amazonaws.com -U postgres -d postgres -p 5432
 Password for user postgres: 
 psql (16.4 (Ubuntu 16.4-0ubuntu0.24.04.2), server 16.3)

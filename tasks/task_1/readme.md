@@ -22,13 +22,13 @@
 
 ufa
 - 
-```
+```bash
 ping google.com
 PING google.com (142.250.203.142) 56(84) bytes of data.
 64 bytes from waw07s06-in-f14.1e100.net (142.250.203.142): icmp_seq=1 ttl=114 time=11.2 ms
 ```
 - 
-```
+```bash
 traceroute google.com
 traceroute to google.com (142.250.203.142), 64 hops max
   1   192.168.100.1  0,710ms  0,572ms  0,472ms 
@@ -44,7 +44,7 @@ traceroute to google.com (142.250.203.142), 64 hops max
  11   142.250.203.142  11,018ms  10,056ms  10,001ms 
 ```
 - 
-```
+```bash
 roman@roman-ASUS:~$   
 tcp        0      0 0.0.0.0:8081            0.0.0.0:*               LISTEN      54714/docker-proxy  
 tcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      2608/nginx: master  
@@ -60,50 +60,50 @@ tcp6       0      0 :::8081                 :::*                    LISTEN      
 udp6       0      0 fe80::81bd:91f8:48f:546 :::*                                276035/NetworkManag 
 ```
 - Ip route:
-```
+```bash
 ip route
 ```
 - machines IP:
-```
+```bash
 curl ifconfig.me
 ```
 - local IP:
-```
+```bash
 ifconfig
 ip addr show
 ```
 - hostname:
-``` 
+```bash
 hostname
 ```
 - 
-```
+```bash
 iptables -L -nv
 ```
-```
+```bash
 iptables -A INPUT --proto icmp -j DROP
 ```
 - 
-```
+```bash
 sudo nano /etc/hosts
 sudo systemctl restart systemd-resolved
 ```
 - 
 init
-```
+```bash
 sudo ps --ppid 1
 ```
 - 
-```
+```bash
 lsof | grep /var/log
 ```
 - 
-```
+```bash
 df -h
 du -sh /var/log/
 ```
 - 
-```
+```bash
 df -i
 
 ```

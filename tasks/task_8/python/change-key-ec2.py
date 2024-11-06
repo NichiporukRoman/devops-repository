@@ -3,7 +3,6 @@ import paramiko
 
 host = input("host: ")
 user = input("user: ")
-port = input("port: ")
 key_path = input("key_path: ")
 new_public_key = input("new_public_key: ")
 
@@ -17,13 +16,11 @@ client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 try:
     private_key = paramiko.RSAKey.from_private_key_file(key_path)
-    client.connect(hostname=host, username=user, port=port, pkey=private_key)
+    client.connect(hostname=host, username=user, port=22, pkey=private_key)
     
     command = f'echo "{new_public_key}" > ~/.ssh/authorized_keys'
     
-    stdin, stdout, stderr = client.exec_command(command)
-    data = stdout.read() + stderr.read()
-    print(data.decode())
+    client.exec_command(command)
     
     print("New public key added to authorized_keys")
     

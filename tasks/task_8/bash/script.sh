@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 os=$(uname)
 
 if [ "$os" = "Linux" ]; then
@@ -30,11 +29,8 @@ if [ "$os" = "Linux" ]; then
   fi
 
 elif [ "$os" = "Darwin" ]; then
-    echo "This is a Mac Machine" 
     curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
-elif [ "$os" = "Darwin" ]; then
-    echo "This is a Mac Machine" 
-    curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+    sudo installer -pkg AWSCLIV2.pkg -target /
 else
     powershell -Command "Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe -OutFile python-installer.exe"
     python-installer.exe /quiet InstallAllUsers=1 PrependPath=1
@@ -44,18 +40,19 @@ else
 fi
 
 rm -r awscliv2.zip
-rm -r aws
+rm aws
 
+read -p "PROFILE NAME: " aws_profile
 read -p "AWS_ACCESS_KEY_ID: " aws_access_key_id
 read -p "AWS_SECRET_ACCESS_KEY: " aws_secret_access_key
 read -p "REGION: " aws_region
-read -p "PROFILE NAME: " aws_profile
+read -p "DEFAULT OUTPUT TYPE: " aws_output_type
 
 aws_profile=${aws_profile:-default}
     
 aws configure set aws_access_key_id "$aws_access_key_id" --profile "$aws_profile"
 aws configure set aws_secret_access_key "$aws_secret_access_key" --profile "$aws_profile"
 aws configure set region "$aws_region" --profile "$aws_profile"
+aws configure set output "$aws_output_type" --profile "$aws_profile"
 
 echo "Profile $aws_profile was sucsesfully made!"
-sleep 10000

@@ -13,9 +13,7 @@ def create_ec2_instance(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY):
     instance = ec2.create_instances(
         ImageId='ami-0866a3c8686eaeeba',       
         InstanceType='t2.nano',    
-        KeyName='task8',  
-        MaxCount=1,
-        MinCount=1
+        KeyName='task8'
     )
     
     print(f"Instance created with ID: {instance[0].id}")

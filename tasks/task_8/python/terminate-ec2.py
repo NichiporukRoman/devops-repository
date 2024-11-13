@@ -11,7 +11,7 @@ def terminate_ec2_instance(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, INSTANSE_ID
     
     response = client.terminate_instances(
         InstanceIds=[INSTANSE_ID],
-        DryRun=False  # Убедитесь, что DryRun=False для выполнения
+        DryRun=False  
     )
 
     print(response)

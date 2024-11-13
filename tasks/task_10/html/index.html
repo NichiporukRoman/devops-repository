@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .info {
+            background: #f0f0f0;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Enter Your Personal Information</h1>
+
+<div class="form-container">
+    <form id="infoForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+
+        <label for="description">Describe Yourself:</label>
+        <textarea id="description" required></textarea>
+
+        <button type="button" onclick="displayInfo()">Submit</button>
+    </form>
+</div>
+
+<div class="info" id="personalInfo" style="display: none;">
+    <h2>Your Information</h2>
+    <p><strong>Name:</strong> <span id="displayName"></span></p>
+    <p><strong>Age:</strong> <span id="displayAge"></span></p>
+    <p><strong>About You:</strong> <span id="displayDescription"></span></p>
+</div>
+
+<script>
+    function displayInfo() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+        const description = document.getElementById("description").value;
+
+        document.getElementById("displayName").innerText = name;
+        document.getElementById("displayAge").innerText = age;
+        document.getElementById("displayDescription").innerText = description;
+
+        document.getElementById("personalInfo").style.display = "block";
+    }
+</script>
+
+</body>
+</html>

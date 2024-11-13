@@ -47,20 +47,23 @@ aws iam attach-role-policy --role-name roman-role --policy-arn arn:aws:iam::aws:
 Создание политики доступа:
 ```bash
 nano bucket-policy.json
-GNU nano 5.8                                                                                                                        bucket-policy.json                                                                                                                         Modified  
+GNU nano 5.8                                                                                                                        bucket-policy.json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::294641507585:role/roman-role"
-      },
+      "Effect": "Deny",
+      "Principal": "*",
       "Action": "s3:*",
       "Resource": [
         "arn:aws:s3:::mybucketroman",
         "arn:aws:s3:::mybucketroman/*"
-      ]
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::YOUR_ACCOUNT_ID:role/roman-role"
+        }
+      }
     }
   ]
 }

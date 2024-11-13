@@ -18,9 +18,8 @@ try:
     private_key = paramiko.RSAKey.from_private_key_file(key_path)
     client.connect(hostname=host, username=user, port=22, pkey=private_key)
     
-    command = f'echo "{new_public_key}" > ~/.ssh/authorized_keys'
     
-    client.exec_command(command)
+    client.exec_command('echo "{new_public_key}" > ~/.ssh/authorized_keys')
     
     print("New public key added to authorized_keys")
     

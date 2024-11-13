@@ -21,7 +21,7 @@ if [ "$os" = "Linux" ]; then
         sudo ./aws/install
   elif [[ -f /etc/debian_version ]]; then
         echo ubuntu
-        sudo apt update
+        sudo apt updat  e
         sudo apt install -y unzip
         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         unzip awscliv2.zip

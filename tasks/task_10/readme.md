@@ -15,5 +15,7 @@ aws s3 cp /path/to/source s3://www.roman.com/ --recursive
     - Hosting type: Host a static website
     - Index document: index.html
 3. Делаем cloudFront distribution:
+    - set s3 static website as origin
+    - redirect http to https 
 4. Схема:
 ![cloudfront](https://github.com/user-attachments/assets/6ea9b870-c9e3-45f8-ae98-daa32fa5b64b)

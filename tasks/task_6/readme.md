@@ -13,15 +13,15 @@
     1. Create VPC
     2. Create Gateway -> attach it to VPC
     3. Create Subnet:
-        1. public: 
-        2. private: Auto-assign IP settings -> yes
+        1. public: Auto-assign IP settings -> yes
+        2. private:
     4. Create nat
     5. Route tables:
         1. public:
             1. add route
             2. Destination:0.0.0.0/0 Target: roman-gateway
 
-        2. public:
+        2. private:
             1. add route
             2. Destination:0.0.0.0/0 Target: roman-nat
 

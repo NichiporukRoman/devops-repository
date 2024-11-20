@@ -1,0 +1,29 @@
+FROM ubuntu:22.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update
+RUN apt-get install -y libgd-dev \
+    wget \
+    build-essential \
+    libpcre3 \
+    libpcre3-dev \
+    zlib1g \
+    zlib1g-dev \
+    libssl-dev
+
+RUN wget http://nginx.org/download/nginx-1.24.0.tar.gz && \
+    tar -zxvf nginx-1.24.0.tar.gz && \
+    cd nginx-1.24.0 && \
+    ./configure --with-http_image_filter_module --with-http_ssl_module && \
+    make && \
+    make install && \
+    rm -rf nginx-$NGINX_VERSION* 
+
+COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
+RUN mkdir -p /usr/local/nginx/html
+COPY ./site /usr/local/nginx/html
+
+EXPOSE 80 82 83
+
+ENTRYPOINT ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]

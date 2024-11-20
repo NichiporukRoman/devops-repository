@@ -1,0 +1,23 @@
+services:
+  apache:
+    container_name: apache
+    image: nichiporukroman/my-apache-image
+    ports:
+      - 81:80
+    networks:
+      - br0
+  
+  nginx:
+    container_name: nginx
+    image: nichiporukroman/my-nginx-image
+    ports:
+      - 443:443
+    networks:
+      - br0
+    volumes:
+      - /etc/ssl/self-signed:/etc/nginx/certs
+    depends_on:
+      - apache
+networks:
+  br0:
+    driver: bridge

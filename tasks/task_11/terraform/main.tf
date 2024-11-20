@@ -40,8 +40,31 @@ module "private" {
 }
 
 
+resource "aws_secretsmanager_secret" "db_password" {
+  name = "db_password1"
+}
+
+
+resource "aws_secretsmanager_secret_version" "db_password" {
+  secret_id     = aws_secretsmanager_secret.db_password.id
+  secret_string = var.secret
+}
+
+
 module "rds" {
   source = "./modules/rds"
+  password = aws_secretsmanager_secret_version.db_password.secret_string
   subnets = [ module.public_subnet.public_subnet_id, module.private_subnet.private_subnet_id ] 
   security_group_id_rds = module.security_group.security_group_id_rds
+}
+
+
+terraform {
+  backend "s3" {
+    bucket         = "mybucketroman"  
+    key            = "terraform.tfstate" 
+    region         = "us-east-1"              
+    encrypt        = true                 
+    dynamodb_table = "terraform-state-lock"          
+  }
 }

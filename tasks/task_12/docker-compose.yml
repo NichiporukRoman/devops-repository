@@ -1,21 +1,22 @@
 services:
   apache:
     container_name: apache
-    image: nichiporukroman/my-apache-image
+    image: romannichiporuk/apache
     ports:
-      - 81:80
+      - 8080:8080
     networks:
       - br0
   
   nginx:
+    user: nginx
     container_name: nginx
-    image: nichiporukroman/my-nginx-image
+    image: romannichiporuk/nginx
     ports:
-      - 443:443
+      - 81:80
     networks:
       - br0
     volumes:
-      - /etc/ssl/self-signed:/etc/nginx/certs
+      - /etc/ssl/self-signed:/home/ubuntu
     depends_on:
       - apache
 networks:

@@ -10,5 +10,8 @@
 ### [task-9 | Application Load Balancer](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_9)
 ### [task-10 | AWS S3 + CloudFront](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_10)
 ### [task-11 | Terraform](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_11)
+### [task-12 | Docker](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_12)
+### [task-13 | ECS](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_13)
+### [task-14 | Github](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_14)
 
 

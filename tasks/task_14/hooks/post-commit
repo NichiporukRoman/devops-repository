@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo starting post-commit operation
+python3 .git/hooks/post_commit.py

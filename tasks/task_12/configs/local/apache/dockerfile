@@ -1,22 +1,11 @@
-FROM ubuntu:22.04
-    
-    
-ENV DEBIAN_FRONTEND=noninteractive
+FROM alpine:3.20
 
-RUN apt update && \
-    apt install -y apache2 \
-    php \
-    libapache2-mod-php \
-    tzdata
+COPY ./info.php /var/www/localhost/htdocs/index.php
 
-    
-COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
+RUN apk update && \
+    apk add --no-cache apache2 php$phpverx-apache2 && \
+    sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/httpd.conf
 
+EXPOSE 8080
 
-COPY ./info.php /var/www/html/info.php
-
-
-EXPOSE 80
-
-
-ENTRYPOINT ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["httpd", "-D", "FOREGROUND"]

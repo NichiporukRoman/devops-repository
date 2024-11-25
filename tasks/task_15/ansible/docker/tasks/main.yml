@@ -4,7 +4,10 @@
   ansible.builtin.include_tasks: 
     file: docker/files/docker.yml
 
-
-- name: Install Docker on Ubuntu or Amazon Linux
+- name: Install Docker Compose on Ubuntu or Amazon Linux
   ansible.builtin.include_tasks:     
     file: docker/files/compose_.yml
+
+- name: Starting Docker Service on Ubuntu or Amazon Linux
+  ansible.builtin.include_tasks:     
+    file: docker/files/start-service.yml

@@ -9,7 +9,7 @@
 - name: Install Git on Amazon Linux
   yum:
     name: 
-      - docker.io
+      - git
     update_cache: yes
     state: present
-  when: ansible_os_family == "Amazon"
+  when: ansible_os_family == "RedHat"

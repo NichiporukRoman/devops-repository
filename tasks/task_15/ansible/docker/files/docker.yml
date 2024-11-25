@@ -14,4 +14,4 @@
     name: 
       - docker
     state: present
-  when: ansible_os_family == "Amazon"
+  when: ansible_os_family == "RedHat"

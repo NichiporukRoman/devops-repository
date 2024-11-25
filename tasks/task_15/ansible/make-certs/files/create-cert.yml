@@ -1,2 +1,2 @@
 - name: Create Certs for our server
-  script: /home/ubuntu/tasks/task_12/configs/local/create-certs.sh
+  script: /home/roman/playsdev-tranee/tasks/task_12/configs/local/create-certs.sh

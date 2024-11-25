@@ -2,14 +2,11 @@
 - name: Install Docker on Ubuntu
   apt:
     name: 
-      - docker.io
+      - docker-compose
     update_cache: yes
     state: present
   when: ansible_os_family == "Debian"
 
 - name: Install Docker on Amazon Linux
-  yum:
-    name: 
-      - docker
-    state: present
-  when: ansible_os_family == "Amazon"
+  script: /home/roman/playsdev-tranee/tasks/task_15/docker-compose.sh
+  when: ansible_os_family == "RedHat"

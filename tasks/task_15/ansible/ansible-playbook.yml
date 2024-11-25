@@ -1,0 +1,13 @@
+- name: Deploy docker and docker-compose on instances
+  hosts: localhost
+
+  vars:
+    git_repo_url: "https://github.com/NichiporukRoman/playsdev-repository.git"
+    git_dest: "/home/ubuntu/"
+
+  roles: 
+    - role: docker
+      tags: docker
+
+    - role: git
+      tags: git 

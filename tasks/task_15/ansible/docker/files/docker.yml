@@ -1,0 +1,17 @@
+---
+# Tasks file for Docker installation
+
+- name: Install Docker on Ubuntu
+  apt:
+    name: 
+      - docker.io
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install Docker on Amazon Linux
+  yum:
+    name: 
+      - docker
+    state: present
+  when: ansible_os_family == "Amazon"

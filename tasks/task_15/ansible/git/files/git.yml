@@ -1,0 +1,15 @@
+- name: Install Git on Ubuntu
+  apt:
+    name: 
+      - git
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install Git on Amazon Linux
+  yum:
+    name: 
+      - docker.io
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Amazon"

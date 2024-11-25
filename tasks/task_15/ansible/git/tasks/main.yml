@@ -1,0 +1,9 @@
+---
+# tasks file for git
+- name: Install Git on Ubuntu or Amazon Linux
+  ansible.builtin.include_tasks: 
+    file: git/files/git.yml
+
+- name: Clone Git repository
+  ansible.builtin.include_tasks: 
+    file: git/files/git-clone.yml

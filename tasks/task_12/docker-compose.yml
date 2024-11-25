@@ -1,7 +1,9 @@
 services:
   apache:
     container_name: apache
-    image: romannichiporuk/apache
+    build:
+      context: ./config/local/apache
+      dockerfile: Dockerfile
     ports:
       - 8080:8080
     networks:
@@ -10,7 +12,9 @@ services:
   nginx:
     user: nginx
     container_name: nginx
-    image: romannichiporuk/nginx
+    build:
+      context: ./config/local/nginx
+      dockerfile: Dockerfile
     ports:
       - 81:80
     networks:
@@ -19,6 +23,8 @@ services:
       - /etc/ssl/self-signed:/home/ubuntu
     depends_on:
       - apache
+
 networks:
   br0:
     driver: bridge
+

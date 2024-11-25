@@ -1,0 +1,6 @@
+---
+# tasks file for docker-build
+
+- name: Create Docker-Compose 
+  ansible.builtin.include_tasks: 
+    file: docker-build/files/create-compose.yml

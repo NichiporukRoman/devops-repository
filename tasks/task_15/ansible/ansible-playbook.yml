@@ -11,3 +11,9 @@
 
     - role: git
       tags: git 
+
+    - role: make-certs
+      tags: make-certs 
+
+    - role: docker-build
+      tags: docker-build

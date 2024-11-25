@@ -1,0 +1,5 @@
+- name: Compose up
+  community.docker.docker_compose_v2:
+    project_src: /home/ubuntu/tasks/task_12
+    files:
+    - docker-compose.yml

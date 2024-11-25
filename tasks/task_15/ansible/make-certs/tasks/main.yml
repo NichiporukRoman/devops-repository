@@ -1,0 +1,5 @@
+---
+# tasks file for make-certs
+- name: Install Docker on Ubuntu or Amazon Linux
+  ansible.builtin.include_tasks: 
+    file: make-certs/files/create-cert.yml

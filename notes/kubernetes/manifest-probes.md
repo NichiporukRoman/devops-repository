@@ -1,4 +1,4 @@
-# Kubernetes basics
+# Kubernetes manifest basic
 ## Probes 
 Проверка работоспособности kubelet поддерживает три типа проверок работоспособности: 
 - Проба запуска (`startup`).

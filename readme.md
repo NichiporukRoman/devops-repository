@@ -16,5 +16,14 @@
 ### [task-15 | Ansible](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_15)
 ### [task-16 | CI/CD Jenkins](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_16)
 ### [task-17 | Gitlab CI](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_17)
+### [task-18 | Monitoring](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_18)
+### [task-19 | Monitoring + Loggining](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_19)
+### [task-20 | Kubernetes](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_20)
+### [task-21 | Kubernetes probes](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_21)
+### [task-22 | Куб + monitoring](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_22)
+### [task-23 | Auth](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_23)
+### [task-24 | Balancing](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_24)
+### [task-25 | Horizontal pod autoscaler](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_25)
+### [task-26 | GitOps](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_26)
 
 

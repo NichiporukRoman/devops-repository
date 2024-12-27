@@ -1,4 +1,4 @@
 - name: Compose up
   command: docker-compose up -d
   args:
-    chdir: /home/ubuntu1/tasks/task_12
+    chdir: '{{ path_to_compose_file }}'

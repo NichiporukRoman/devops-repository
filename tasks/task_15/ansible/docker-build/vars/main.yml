@@ -1,2 +1,1 @@
----
-# vars file for docker-build
+path_to_compose_file: "/home/ubuntu1/tasks/task_12"

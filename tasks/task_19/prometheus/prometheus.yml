@@ -1,0 +1,41 @@
+  global:
+    scrape_interval: 15s
+
+  alerting:
+    alertmanagers:
+    - scheme: http
+      static_configs:
+      - targets:
+        - "alertmanager:9093"
+
+  scrape_configs:
+    - job_name: prometheus
+      static_configs:
+        - targets: ['localhost:9090']
+
+    - job_name: node-exporter
+      static_configs:
+        - targets: 
+          - 'exporter:9100'
+      relabel_configs:
+        - target_label: instance
+          replacement: "localhost"
+
+    - job_name: 'ec2_node_exporters'
+      ec2_sd_configs:
+        - region: us-east-1
+          access_key: access_key
+          secret_key: secret_key
+          port: 9100
+          filters: 
+            - name: tag:Name
+              values: ["target"] 
+      relabel_configs:
+        - source_labels: [__meta_ec2_public_ip]
+          regex: (.+)
+          target_label: __address__
+          replacement: ${1}:9100 
+        - source_labels: [__meta_ec2_tag_Name]
+          target_label: instance    
+  rule_files:
+    - "/etc/prometheus/alert.yml"

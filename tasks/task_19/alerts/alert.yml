@@ -1,0 +1,35 @@
+groups:
+  - name: Critical alerts
+    labels:
+      __meta_ec2_tag_Name: target
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
+          summary: 'Instance {{ $labels.instance }} down'
+
+  - name: CPU alerts
+    rules:
+      - alert: HighCpuUsageEC2
+        expr: avg by (instance) (rate(node_cpu_seconds_total{mode!="idle", instance="target"}[5m])) > 0.8
+        for: 15s
+        labels:
+          severity: warning
+        annotations:
+          description: 'High CPU usage detected on {{ $labels.instance }}. Current usage is above 80%.'
+          summary: 'High CPU usage on {{ $labels.instance }}'
+
+  - name: Memory alerts
+    rules:
+      - alert: LowAvailableMemoryLocalhost
+        expr: node_memory_MemAvailable_bytes{instance="localhost"} / node_memory_MemTotal_bytes{instance="localhost"} < 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low memory on {{ $labels.instance }}"
+          description: "Available memory is below 10% on {{ $labels.instance }}."

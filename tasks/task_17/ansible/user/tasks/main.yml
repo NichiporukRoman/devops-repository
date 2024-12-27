@@ -1,0 +1,12 @@
+- name: Create jenkins user
+  ansible.builtin.user:
+    name: jenkins
+    state: present
+    create_home: yes
+    shell: /bin/bash
+
+- name: Let him Dockerize
+  ansible.builtin.user:
+    name: jenkins
+    groups: docker
+    append: yes

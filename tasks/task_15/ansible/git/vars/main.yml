@@ -1,2 +1,2 @@
----
-# vars file for git
+git_repo_url: "https://github.com/NichiporukRoman/playsdev-repository.git"
+git_dest: "/home/ubuntu1/"

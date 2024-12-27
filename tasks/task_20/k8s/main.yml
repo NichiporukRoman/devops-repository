@@ -1,0 +1,30 @@
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Initialize the cluster
+      shell: kubeadm init --pod-network-cidr=10.245.0.0/16 >> cluster_initialized.txt
+
+    - name: Create .kube directory for ubuntu user
+      become: yes
+      become_user: ubuntu
+      file:
+        path: "/home/ubuntu/.kube"
+        state: directory
+        mode: '0755'
+
+    - name: Copy admin.conf to user's kube config
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: "/home/ubuntu/.kube/config"
+        remote_src: yes
+        owner: ubuntu
+
+    - name: Install Pod network using Flannel
+      become: yes
+      become_user: ubuntu
+      shell: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml >> /home/ubuntu/pod_network_setup.txt
+      args:
+        chdir: "/home/ubuntu"
+        creates: "/home/ubuntu/pod_network_setup.txt"
+
+            

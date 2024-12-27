@@ -1,0 +1,54 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  AWS_REGION: "us-east-1"
+  ECS_CLUSTER: "my-ecs-cluster"
+  ECS_SERVICE: "nginx-service"
+  IMAGE_REPO: "my-docker-repo/nginx-custom"
+
+before_script:
+  - echo "Setting up AWS credentials and Docker..."
+  - export PATH=$PATH:/usr/local/bin
+  - eval $(aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com)
+
+build_nginx:
+  stage: build
+  script:
+    - echo "Building custom NGINX image..."
+    - docker build -t $IMAGE_REPO:dev .
+    - docker tag $IMAGE_REPO:dev <AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO:dev
+    - docker push <AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO:dev
+  only:
+    - dev
+
+deploy_ecs:
+  stage: deploy
+  script:
+    - echo "Updating ECS service with new image..."
+    - docker pull <AWS_ACCOUNT_ID>.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO:main
+    - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment
+  only:
+    - main
+
+deploy_cloudfront:
+  stage: deploy
+  script:
+    - echo "Deploying to CloudFront..."
+    - NEW_DIST_ID=$(aws cloudfront create-invalidation --distribution-id <CLOUDFRONT_DIST_ID> --paths "/*" | jq -r '.Invalidation.Id')
+    - echo "Invalidation created with ID: $NEW_DIST_ID"
+  only:
+    - main
+
+cleanup:
+  stage: deploy
+  script:
+    - echo "Cleaning up unused Docker images..."
+    - docker image prune -af
+    - aws ecr list-images --repository-name $IMAGE_REPO | jq -r '.imageIds[] | select(.imageTag != "main" and .imageTag != "dev") | @base64' | while read -r imageId; do
+        IMAGE_TAG=$(echo "$imageId" | base64 --decode | jq -r '.imageTag');
+        aws ecr batch-delete-image --repository-name $IMAGE_REPO --image-ids imageTag=$IMAGE_TAG;
+      done
+    - echo "Cleanup complete."
+  when: always

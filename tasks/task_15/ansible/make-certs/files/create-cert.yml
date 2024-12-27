@@ -1,2 +1,2 @@
 - name: Create Certs for our server
-  script: /home/roman/playsdev-tranee/tasks/task_12/configs/local/create-certs.sh
+  script: '{{ path_for_cert_script }}'

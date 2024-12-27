@@ -13,5 +13,8 @@
 ### [task-12 | Docker](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_12)
 ### [task-13 | ECS](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_13)
 ### [task-14 | Github](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_14)
+### [task-15 | Ansible](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_15)
+### [task-16 | CI/CD Jenkins](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_16)
+### [task-17 | Gitlab CI](https://github.com/NichiporukRoman/playsdev-repository/tree/main/tasks/task_17)
 
 

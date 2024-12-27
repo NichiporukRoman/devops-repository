@@ -1,0 +1,71 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_REPO_URL = 'https://github.com/NichiporukRoman/nginx-apache.git'
+        GIT_BRANCH = 'main'
+        DOCKER_REGISTRY = 'nichiporukroman'
+        DOCKER_IMAGE_NGINX = "${DOCKER_REGISTRY}/my-nginx-image:test"
+        DOCKER_IMAGE_APACHE = "${DOCKER_REGISTRY}/my-apache-image:test"
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: "${GIT_BRANCH}", url: "${GIT_REPO_URL}"
+            }
+        }
+
+        stage('Build images') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh '''
+                    docker build -t nginx ./local/nginx
+                    docker tag nginx ${DOCKER_IMAGE_NGINX}
+                    docker build -t apache ./local/apache
+                    docker tag apache ${DOCKER_IMAGE_APACHE}
+                    '''
+                }
+            }
+        }
+
+        stage('Push Images') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh '''
+                    docker login -u ${USERNAME} -p ${PASSWORD}
+                    docker push ${DOCKER_IMAGE_NGINX}
+                    docker push ${DOCKER_IMAGE_APACHE}
+                    '''
+                }
+            }
+        }
+
+        stage('Service Manipulation') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'noire', keyFileVariable: 'SSH_KEY')]) {
+                    sh '''
+                    ssh -i $SSH_KEY ubuntu@54.227.120.144 <<EOF
+                    docker stop apache || true
+                    docker rm apache || true
+                    docker stop nginx || true
+                    docker rm nginx || true
+
+                    docker network create --driver=bridge --subnet=192.168.0.0/16 br0 || true
+
+                    docker run -d -p 8080:8080 --name apache --network br0 ${DOCKER_IMAGE_APACHE}
+                    docker run -d -p 80:80 --name nginx --network br0 ${DOCKER_IMAGE_NGINX}
+
+                    docker image prune -f
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker image prune -f'
+        }
+    }
+}

@@ -1,0 +1,7 @@
+- name: Installing JDK
+  apt:
+    name: 
+        - fontconfig
+        - openjdk-17-jre
+    update_cache: yes
+    state: present

@@ -1,0 +1,19 @@
+- name: Setup Env
+  hosts: web
+  become: true
+
+  roles:      
+    - role: docker
+      tags: docker
+      
+    - role: user
+      tags: user
+
+    - role: jdk-install
+      tags: jdk-install
+
+    - role: jenkins-install
+      tags: jenkins-install
+      
+    - role: key
+      tags: key

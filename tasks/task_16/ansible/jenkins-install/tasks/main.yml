@@ -1,0 +1,19 @@
+- name: Download Jenkins GPG key
+  ansible.builtin.get_url:
+    url: '{{ link_to_gpg_key }}'
+    dest: '{{ destination_for_gpg_key }}'
+    mode: '0644'
+
+- name: Add Jenkins repository
+  ansible.builtin.apt_repository:
+    repo: '{{ link_to_jenkins_repository }}'
+    state: present
+    filename: jenkins
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install Jenkins
+  ansible.builtin.apt:
+    name: jenkins

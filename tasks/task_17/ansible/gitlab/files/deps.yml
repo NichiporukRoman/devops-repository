@@ -1,0 +1,9 @@
+- name: Install Deps for gitlab
+  apt:
+    name: 
+      - ca-certificates 
+      - openssh-server
+      - postfix
+    update_cache: yes
+    state: present
+  when: ansible_os_family == "Debian"

@@ -1,10 +1,13 @@
 FROM alpine:3.20
 
 COPY ./info.php /var/www/localhost/htdocs/index.php
+COPY ./info.php /var/www/localhost/htdocs/sure/info.php
 
 RUN apk update && \
     apk add --no-cache apache2 php$phpverx-apache2 && \
-    sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/httpd.conf
+    sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/httpd.conf 
+
+RUN echo "ServerName localhost" >> /etc/apache2/httpd.conf
 
 EXPOSE 8080
 

@@ -1,0 +1,214 @@
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local roman-asus] and IPs [10.96.0.1 10.96.0.42]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost roman-asus] and IPs [10.96.0.42 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost roman-asus] and IPs [10.96.0.42 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "super-admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Using existing ca certificate authority
+[certs] Using existing apiserver certificate and key on disk
+[certs] Using existing apiserver-kubelet-client certificate and key on disk
+[certs] Using existing front-proxy-ca certificate authority
+[certs] Using existing front-proxy-client certificate and key on disk
+[certs] Using existing etcd/ca certificate authority
+[certs] Using existing etcd/server certificate and key on disk
+[certs] Using existing etcd/peer certificate and key on disk
+[certs] Using existing etcd/healthcheck-client certificate and key on disk
+[certs] Using existing apiserver-etcd-client certificate and key on disk
+[certs] Using the existing "sa" key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/admin.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/super-admin.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/kubelet.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/controller-manager.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/scheduler.conf"
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is not healthy after 4m0.000737558s
+
+Unfortunately, an error has occurred:
+	The HTTP call equal to 'curl -sSL http://127.0.0.1:10248/healthz' returned error: Get "http://127.0.0.1:10248/healthz": context deadline exceeded
+
+
+This error is likely caused by:
+	- The kubelet is not running
+	- The kubelet is unhealthy due to a misconfiguration of the node in some way (required cgroups disabled)
+
+If you are on a systemd-powered system, you can try to troubleshoot the error with the following commands:
+	- 'systemctl status kubelet'
+	- 'journalctl -xeu kubelet'
+
+Additionally, a control plane component may have crashed or exited when started by the container runtime.
+To troubleshoot, list all containers using your preferred container runtimes CLI.
+Here is one example how you may list all running Kubernetes containers by using crictl:
+	- 'crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock ps -a | grep kube | grep -v pause'
+	Once you have found the failing container, you can inspect its logs with:
+	- 'crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock logs CONTAINERID'
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Using existing ca certificate authority
+[certs] Using existing apiserver certificate and key on disk
+[certs] Using existing apiserver-kubelet-client certificate and key on disk
+[certs] Using existing front-proxy-ca certificate authority
+[certs] Using existing front-proxy-client certificate and key on disk
+[certs] Using existing etcd/ca certificate authority
+[certs] Using existing etcd/server certificate and key on disk
+[certs] Using existing etcd/peer certificate and key on disk
+[certs] Using existing etcd/healthcheck-client certificate and key on disk
+[certs] Using existing apiserver-etcd-client certificate and key on disk
+[certs] Using the existing "sa" key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/admin.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/super-admin.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/kubelet.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/controller-manager.conf"
+[kubeconfig] Using existing kubeconfig file: "/etc/kubernetes/scheduler.conf"
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is not healthy after 4m0.001209039s
+
+Unfortunately, an error has occurred:
+	The HTTP call equal to 'curl -sSL http://127.0.0.1:10248/healthz' returned error: Get "http://127.0.0.1:10248/healthz": context deadline exceeded
+
+
+This error is likely caused by:
+	- The kubelet is not running
+	- The kubelet is unhealthy due to a misconfiguration of the node in some way (required cgroups disabled)
+
+If you are on a systemd-powered system, you can try to troubleshoot the error with the following commands:
+	- 'systemctl status kubelet'
+	- 'journalctl -xeu kubelet'
+
+Additionally, a control plane component may have crashed or exited when started by the container runtime.
+To troubleshoot, list all containers using your preferred container runtimes CLI.
+Here is one example how you may list all running Kubernetes containers by using crictl:
+	- 'crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock ps -a | grep kube | grep -v pause'
+	Once you have found the failing container, you can inspect its logs with:
+	- 'crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock logs CONTAINERID'
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[init] Using Kubernetes version: v1.31.4
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local roman-asus] and IPs [10.96.0.1 10.96.0.42]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost roman-asus] and IPs [10.96.0.42 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost roman-asus] and IPs [10.96.0.42 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "super-admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is not healthy after 4m0.000358739s
+
+Unfortunately, an error has occurred:
+	The HTTP call equal to 'curl -sSL http://127.0.0.1:10248/healthz' returned error: Get "http://127.0.0.1:10248/healthz": context deadline exceeded
+
+
+This error is likely caused by:
+	- The kubelet is not running
+	- The kubelet is unhealthy due to a misconfiguration of the node in some way (required cgroups disabled)
+
+If you are on a systemd-powered system, you can try to troubleshoot the error with the following commands:
+	- 'systemctl status kubelet'
+	- 'journalctl -xeu kubelet'
+
+Additionally, a control plane component may have crashed or exited when started by the container runtime.
+To troubleshoot, list all containers using your preferred container runtimes CLI.
+Here is one example how you may list all running Kubernetes containers by using crictl:
+	- 'crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock ps -a | grep kube | grep -v pause'
+	Once you have found the failing container, you can inspect its logs with:
+	- 'crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock logs CONTAINERID'

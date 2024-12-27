@@ -1,0 +1,12 @@
+---
+- name: Install Dependencies for gitlab
+  ansible.builtin.include_tasks: 
+    file: gitlab/files/deps.yml
+
+- name: Install gitlab
+  ansible.builtin.include_tasks: 
+    file: gitlab/files/gitlab-install.yml
+
+- name: Install gitlab
+  ansible.builtin.include_tasks: 
+    file: gitlab/files/setup-gitlab.yml

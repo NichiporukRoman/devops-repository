@@ -1,0 +1,21 @@
+- name: Ensure the .ssh directory exists
+  file:
+    path: "/home/jenkins/.ssh"
+    state: directory
+    mode: '0700'
+    owner: jenkins
+    group: jenkins
+
+- name: Copy the private key
+  copy:
+    src: "/home/roman/Documents/noire.pem"
+    dest: "/home/jenkins/.ssh/id_rsa"
+    mode: '0600'
+    owner: jenkins
+    group: jenkins
+
+- name: Ensure proper permissions on the .ssh directory and key file
+  file:
+    path: "/home/jenkins/.ssh/id_rsa"
+    state: file
+    mode: '0600'

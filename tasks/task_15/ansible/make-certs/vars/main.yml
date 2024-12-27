@@ -1,2 +1,1 @@
----
-# vars file for make-certs
+path_for_cert_script: "/home/roman/playsdev-tranee/tasks/task_12/configs/local/create-certs.sh"

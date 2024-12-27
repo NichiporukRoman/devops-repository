@@ -1,0 +1,10 @@
+- name: Setup Env
+  hosts: web
+  become: true
+
+  roles:      
+    - role: docker
+      tags: docker
+      
+    - role: gitlab
+      tags: gitlab

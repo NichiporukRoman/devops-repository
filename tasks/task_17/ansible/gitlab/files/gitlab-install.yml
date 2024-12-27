@@ -1,0 +1,21 @@
+- name: Download GitLab installation script
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+    dest: /tmp/script.deb.sh
+    mode: '0755'
+
+- name: Run GitLab installation script
+  shell: bash /tmp/script.deb.sh
+  args:
+    executable: /bin/bash
+
+- name: Install GitLab CE package
+  apt:
+    name: gitlab-ce
+    state: present
+    update_cache: yes
+
+- name: Clean up installation script
+  file:
+    path: /tmp/script.deb.sh
+    state: absent

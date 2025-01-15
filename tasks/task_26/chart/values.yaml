@@ -1,0 +1,21 @@
+replicaCount: 1
+appname: task-26
+
+containers:
+  repository: nichiporukroman
+  names:
+    nginx: nginx
+    apache: apache
+  images:
+    nginx: my-nginx-image
+    apache: my-apache-image
+  versions:
+    nginx: latest
+    apache: latest
+  ports:
+    nginx: 80
+    apache: 8080
+    nginx_service: 80
+    apache_service: 8080
+    nginx_service_nodeport: 30001
+    apache_service_nodeport: 30002

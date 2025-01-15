@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.appname }}-service
+spec:
+  selector:
+    app: {{ .Release.Name }}-{{ .Values.appname }}
+  ports:
+    - name: {{ .Values.containers.names.nginx }}
+      protocol: TCP
+      port: {{ .Values.containers.ports.nginx }}
+      targetPort: {{ .Values.containers.ports.nginx_service }}
+      nodePort: {{ .Values.containers.ports.nginx_service_nodeport }}
+    - name: {{ .Values.containers.names.apache }}
+      protocol: TCP
+      port: {{ .Values.containers.ports.apache }}
+      targetPort: {{ .Values.containers.ports.apache_service }}
+      nodePort: {{ .Values.containers.ports.apache_service_nodeport }}
+  type: NodePort

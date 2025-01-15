@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.appname }}
+  labels:
+    app: {{ .Release.Name }}-{{ .Values.appname }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-{{ .Values.appname }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-{{ .Values.appname }}
+    spec:
+      containers:
+      - name: {{ .Values.containers.names.nginx }}
+        image: {{ .Values.containers.repository }}/{{ .Values.containers.images.nginx }}:{{ .Values.containers.versions.nginx }}
+        volumeMounts:
+        ports:
+        - containerPort: {{ .Values.containers.ports.nginx }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.containers.ports.nginx }}
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 5
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.containers.ports.nginx }}
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 5
+
+        startupProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.containers.ports.nginx }}
+          initialDelaySeconds: 10
+          failureThreshold: 30
+          periodSeconds: 10
+
+
+      - name: {{ .Values.containers.names.apache }}
+        image: {{ .Values.containers.repository }}/{{ .Values.containers.images.apache }}:{{ .Values.containers.versions.apache }}
+        ports:
+          - containerPort: {{ .Values.containers.ports.apache }}

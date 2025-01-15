@@ -1,0 +1,5 @@
+FROM nginx:alpine
+RUN apk add --no-cache curl
+WORKDIR /usr/share/nginx/html
+RUN curl -O https://storage.yandexcloud.net/public-task-28/index.html
+CMD ["nginx", "-g", "daemon off;"]

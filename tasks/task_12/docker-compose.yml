@@ -17,7 +17,7 @@ services:
     networks:
       - br0
     volumes:
-      - /etc/ssl/self-signed:/home/ubuntu
+      - /etc/ssl/self-signed:/etc/ssl/self-signed
     depends_on:
       - apache
 

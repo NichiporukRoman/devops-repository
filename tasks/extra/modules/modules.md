@@ -1,0 +1,1 @@
+[[bastion]], [[private_server]], [[rds]], [[vpc]],[[security_group]]

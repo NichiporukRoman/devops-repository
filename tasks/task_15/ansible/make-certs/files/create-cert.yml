@@ -1,2 +1,9 @@
 - name: Create Certs for our server
   script: '{{ path_for_cert_script }}'
+
+- name: Download privkey.pem
+  command: wget https://drive.google.com/uc?export=download&id=1Wg_q5IztDNLlkipc6-10wjVCM5meUoDE -O /home/ubuntu1/self-signed/selfsigned.key
+
+- name: Download fullchain.pem
+  command: wget https://drive.google.com/uc?export=download&id=1hMd50nYgxqxCX_RPBgtGKGZFEBqGJwlg -O /home/ubuntu1/self-signed/selfsigned.crt
+

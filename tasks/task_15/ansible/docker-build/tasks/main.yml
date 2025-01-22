@@ -1,6 +1,15 @@
 ---
 # tasks file for docker-build
 
+- name: Delete Docker-Compose 
+  ansible.builtin.include_tasks: 
+    file: docker-build/files/delete-compose.yml
+
+- name: Delete old images
+  ansible.builtin.include_tasks: 
+    file: docker-build/files/delete-old-image.yml
+
 - name: Create Docker-Compose 
   ansible.builtin.include_tasks: 
     file: docker-build/files/create-compose.yml
+

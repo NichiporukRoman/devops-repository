@@ -1,0 +1,4 @@
+- name: Compose down
+  command: docker-compose down
+  args:
+    chdir: '{{ path_to_compose_file }}'

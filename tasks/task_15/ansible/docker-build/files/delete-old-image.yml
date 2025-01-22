@@ -1,0 +1,5 @@
+- name: Delete nginx
+  command: docker rmi nichiporukroman/my-nginx-image:latest
+
+- name: Delete apache
+  command: docker rmi nichiporukroman/my-apache-image:latest

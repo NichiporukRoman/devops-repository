@@ -17,7 +17,7 @@ services:
     networks:
       - br0
     volumes:
-      - /etc/ssl/self-signed:/etc/nginx/certs
+      - /home/ubuntu1/self-signed:/etc/nginx/certs
     depends_on:
       - apache
 

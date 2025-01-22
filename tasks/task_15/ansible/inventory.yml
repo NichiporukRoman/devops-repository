@@ -2,12 +2,12 @@ all:
   children:
     web:
       hosts:
-        3.91.32.83:
-          ansible_user: ec2-user
+        84.201.152.55:
+          ansible_user: roman
           ansible_port: 22
-          ansible_ssh_private_key_file: /home/roman/Documents/noire.pem
-        3.90.109.115:
-          ansible_user: ubuntu
-          ansible_port: 22
-          ansible_ssh_private_key_file: /home/roman/Documents/noire.pem
+          ansible_ssh_private_key_file: /home/roman/pokaz
+        # 3.90.109.115:
+        #   ansible_user: ubuntu
+        #   ansible_port: 22
+        #   ansible_ssh_private_key_file: /home/roman/Documents/noire.pem
 ansible_python_interpreter: /usr/bin/python3

@@ -10,7 +10,7 @@ services:
   nginx:
     user: nginx
     container_name: nginx
-    image: nichiporukroman/my-nginx-image:test
+    image: nichiporukroman/my-nginx-image:latest
     ports:
       - 80:80
       - 443:443

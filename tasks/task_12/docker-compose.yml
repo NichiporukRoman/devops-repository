@@ -12,7 +12,8 @@ services:
     container_name: nginx
     image: nichiporukroman/my-nginx-image:test
     ports:
-      - 81:80
+      - 80:80
+      - 443:443
     networks:
       - br0
     volumes:

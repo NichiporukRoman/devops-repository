@@ -36,3 +36,48 @@ terraform plan
 terraform apply
 ```
 1. 
+
+
+
+gitlabUrl: https://gitlab.com/
+
+runnerRegistrationToken: "glrt-t3_VeA5hsAMk_Egq1uCyDAE"
+
+concurrent: 10
+
+checkInterval: 30
+
+rbac:
+  create: true
+  rules:
+    - apiGroups: [""]
+      resources: ["pods"]
+      verbs: ["list", "get", "watch", "create", "delete"]
+    - apiGroups: [""]
+      resources: ["pods/exec"]
+      verbs: ["create"]
+    - apiGroups: [""]
+      resources: ["pods/log"]
+      verbs: ["get"]
+    - apiGroups: [""]
+      resources: ["pods/attach"]
+      verbs: ["list", "get", "create", "delete", "update"]
+    - apiGroups: [""]
+      resources: ["secrets"]
+      verbs: ["list", "get", "create", "delete", "update"]      
+    - apiGroups: [""]
+      resources: ["configmaps"]
+      verbs: ["list", "get", "create", "delete", "update"]     
+
+runners:
+  privileged: true
+  
+  config: |
+    [[runners]]
+      [runners.kubernetes]
+        namespace = "gitlab"
+        tls_verify = false
+        image = "gcr.io/kaniko-project/executor:v1.23.2-debug"
+        privileged = true
+
+
